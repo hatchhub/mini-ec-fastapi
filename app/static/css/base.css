@@ -1,0 +1,23 @@
+/* ベース設定・共通スタイル */
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    padding: 1rem;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  a {
+    color: #3366cc;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  

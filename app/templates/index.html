@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ミニECプロトタイプ</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  {% include "partials/header.html" %}
+  <h1>商品一覧</h1>
+  
+  <ul>
+    {% for product in products %}
+    <li class="product-item">
+      <img src="/static/img/noimage.png" alt="商品画像" width="120" />
+      <strong>{{ product.name }}</strong><br>
+      {{ product.description }}<br>
+      価格: {{ product.price }}円<br>
+      {% if product.id in cart_ids %}
+      <button disabled>追加済み</button>
+      {% else %}
+      <button
+        hx-post="/cart/add/{{ product.id }}"
+        hx-swap="outerHTML"
+        hx-target="this"
+      >
+        カートに追加
+      </button>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  
+  <p><a href="/cart">🛒 カートを見る</a></p>
+  {% include "partials/footer.html" %}
+  
+</body>
+</html>

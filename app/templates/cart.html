@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ミニECプロトタイプ</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  {% include "partials/header.html" %}
+  <h1>カートの中身</h1>
+
+  {% if products %}
+  <ul>
+    {% for product in products %}
+    <li class="product-item">
+      <img src="/static/img/noimage.png" alt="商品画像" width="120" />
+      <strong>{{ product.name }}</strong><br>
+      {{ product.description }}<br>
+      価格: {{ product.price }}円<br>
+      <form method="POST" action="/cart/remove/{{ product.id }}">
+        <button type="submit">🗑️ カートから削除</button>
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+  <p><strong>🧮 合計金額: {{ total_price }}円</strong></p>
+
+  <form action="/cart/clear" method="post">
+    <button type="submit">🧹 カートを空にする</button>
+  </form>
+  <br>
+  <form action="/cart/checkout" method="post">
+    <button type="submit" style="margin-top: 10px; background-color: #4CAF50; color: white;">
+      🛒 購入する
+    </button>
+  </form>
+
+  {% else %}
+    <p>カートは空です。</p>
+  {% endif %}
+
+  <br>
+  <p style="margin-top: 20px;">
+    <a href="/">← 商品一覧に戻る</a>
+  </p>
+  {% include "partials/footer.html" %}
+</body>
+</html>
