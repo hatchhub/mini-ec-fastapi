@@ -1,5 +1,7 @@
 # mini-ec-fastapi
 
+📄 English version available → [README_en.md](./README_en.md)
+
 FastAPI + HTMX を使用した、軽量なECサイトのプロトタイプです。
 
 ## 🚀 セットアップ手順
